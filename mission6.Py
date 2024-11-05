@@ -52,17 +52,18 @@ def words(filename):
         fichier = file.readlines()
         for ligne in fichier :
             r.append(ligne)
-    print("Read file as list of words")
-def chearch(mot,filename):
-    with open(filename,"r") as file:
-        fichier=file.readlines()
-        for i in fichier:
-            if str(mot) in i:
-                c=(str(mot)+" is in the list of words")
-                break
-            else:
-                c=(str(mot)+" is not in the list of words")
-        print(c)
+    print( "Read file as list of words")
+    return r
+def search(mot,filename):
+    
+    fichier=words(filename)
+    for i in fichier:
+        if str(mot) in i:
+            c=(str(mot)+" is in the list of words")
+            break
+        else:
+            c=(str(mot)+" is not in the list of words")
+    return c
 
 
 def sum(filename):
@@ -103,11 +104,43 @@ def avg(filename):
 
     print(su/len(fichier))
 
-command=""
-x=input("choisi")
+
+
+x=input("choisi le fichier ")
 l=x.split()
-print(l)
-
+if l[0]=="file":
+    if file(l[1])=="open file":
+        filenam=l[1]
+    else:
+        filenam="all-words.dat"
+z=""
+while z!="exit":
+    z=input("choisis une commande ")
+    b=z.split()
+    if b[0]=="info":
+        info(filenam)
+    if b[0]=="words":
+        words(filenam)
+    if b[0]=="search":
+        if len(b)>1:
+            search(b[1],filenam)
+        else:
+            print("please enter a word")
+    if b[0]=="sum":
+        sum(filenam)
+    if b[0]=="avg":
+        avg(filenam)
+    if b[0]=='help':
+        g=[]
+        
+        print("file <name>: spécifie le nom d'un fichier sur lequel l'outil doit travailler à partir de ce moment\n"
+"info: montre le nombre de lignes et de caractères du fichier\n"
+"words: utilise le fichier comme liste de mots à partir de maintenant\n"
+"search <word>: détermine si le mot est dans la liste de mots\n"
+"sum: calcule la somme des nombres spécifiés\n"
+"avg: calcule la moyenne des nombres spécifiés\n")
+        
+            
 
 
     
@@ -115,5 +148,3 @@ print(l)
 
 
 
-
-    
