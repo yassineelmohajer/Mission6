@@ -9,6 +9,8 @@ def verify(blase):
                 print("Please enter a real files")
             else:
                 c=True
+                v =blase
+                print("Loaded file")
 
 
 
